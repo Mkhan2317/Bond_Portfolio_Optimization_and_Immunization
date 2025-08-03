@@ -157,34 +157,99 @@ elif section == "Data Explorer":
 # ===============================
 elif section == "Analytics & Risk":
     st.title("📊 Analytics & Risk")
+    
+    # Summary Statistics
+    st.subheader("📈 Summary Statistics")
     avg_return = filtered_Y.mean()
     std_return = filtered_Y.std()
     summary_df = pd.DataFrame({"Average Return": avg_return, "Volatility": std_return})
     st.dataframe(summary_df.style.format("{:.2%}").background_gradient(cmap="Blues"))
-    fig, ax = plt.subplots(figsize=(8, 6))
-    sns.heatmap(filtered_Y.corr(), annot=True, cmap="coolwarm", linewidths=0.5, ax=ax)
+    
+    # Correlation Heatmap
+    st.subheader("🔄 Asset Correlation Matrix")
+    fig, ax = plt.subplots(figsize=(10, 8))
+    correlation_matrix = filtered_Y.corr()
+    sns.heatmap(correlation_matrix, annot=True, cmap="coolwarm", linewidths=0.5, 
+                ax=ax, fmt='.2f', cbar_kws={'label': 'Correlation Coefficient'})
+    ax.set_title("Asset Correlation Heatmap", fontsize=14, fontweight='bold')
+    ax.set_xlabel("Assets", fontsize=12)
+    ax.set_ylabel("Assets", fontsize=12)
+    plt.tight_layout()
     st.pyplot(fig)
+    
+    # Risk Metrics
+    st.subheader("⚠️ Risk Metrics")
+    col1, col2 = st.columns(2)
+    
+    with col1:
+        st.metric("Portfolio Volatility", f"{filtered_Y.std().mean():.2%}")
+        st.metric("Max Drawdown", f"{filtered_Y.min().min():.2%}")
+    
+    with col2:
+        st.metric("Average Return", f"{filtered_Y.mean().mean():.2%}")
+        st.metric("Sharpe Ratio", f"{(filtered_Y.mean().mean() / filtered_Y.std().mean()):.2f}")
 
 # ===============================
 # Charts & Visualization
 # ===============================
 elif section == "Charts & Visualization":
     st.title("📊 Charts & Visualization")
-    fig1, ax1 = plt.subplots(figsize=(10, 5))
+    
+    # Chart 1: Average Returns Bar Chart
+    st.subheader("📈 Average Returns by Asset")
+    fig1, ax1 = plt.subplots(figsize=(12, 6))
     sns.barplot(x=filtered_Y.columns, y=filtered_Y.mean(), palette="viridis", ax=ax1)
+    ax1.set_title("Average Returns by Asset", fontsize=14, fontweight='bold')
+    ax1.set_xlabel("Assets", fontsize=12)
+    ax1.set_ylabel("Average Return", fontsize=12)
+    ax1.tick_params(axis='x', rotation=45)
+    plt.tight_layout()
     st.pyplot(fig1)
+    
+    # Chart 2: Risk-Return Scatter Plot
+    st.subheader("🎯 Risk-Return Profile")
     avg_return = filtered_Y.mean()
     std_return = filtered_Y.std()
-    fig2, ax2 = plt.subplots(figsize=(8, 6))
-    sns.scatterplot(x=std_return, y=avg_return, s=120, color="tomato", edgecolor="black", ax=ax2)
+    fig2, ax2 = plt.subplots(figsize=(10, 8))
+    scatter = sns.scatterplot(x=std_return, y=avg_return, s=150, color="tomato", 
+                             edgecolor="black", ax=ax2)
+    
+    # Add asset labels
     for i in avg_return.index:
-        ax2.text(x=std_return[i] + 0.0005, y=avg_return[i], s=i, fontsize=9)
+        ax2.text(x=std_return[i] + 0.0005, y=avg_return[i], s=i, fontsize=10, 
+                fontweight='bold', ha='left', va='center')
+    
+    ax2.set_title("Risk-Return Scatter Plot", fontsize=14, fontweight='bold')
+    ax2.set_xlabel("Volatility (Standard Deviation)", fontsize=12)
+    ax2.set_ylabel("Average Return", fontsize=12)
+    ax2.grid(True, alpha=0.3)
+    plt.tight_layout()
     st.pyplot(fig2)
-    fig3, ax3 = plt.subplots(figsize=(12, 6))
+    
+    # Chart 3: Cumulative Returns Time Series
+    st.subheader("📈 Cumulative Returns Over Time")
+    fig3, ax3 = plt.subplots(figsize=(14, 7))
     for col in filtered_Y.columns:
-        ax3.plot(filtered_Y.index, (1 + filtered_Y[col]).cumprod(), label=col)
-    ax3.legend()
+        ax3.plot(filtered_Y.index, (1 + filtered_Y[col]).cumprod(), label=col, linewidth=2)
+    
+    ax3.set_title("Cumulative Returns Performance", fontsize=14, fontweight='bold')
+    ax3.set_xlabel("Date", fontsize=12)
+    ax3.set_ylabel("Cumulative Return (Index = 1)", fontsize=12)
+    ax3.legend(bbox_to_anchor=(1.05, 1), loc='upper left')
+    ax3.grid(True, alpha=0.3)
+    plt.tight_layout()
     st.pyplot(fig3)
+    
+    # Chart 4: Returns Distribution
+    st.subheader("📊 Returns Distribution")
+    fig4, ax4 = plt.subplots(figsize=(12, 6))
+    filtered_Y.boxplot(ax=ax4)
+    ax4.set_title("Returns Distribution by Asset", fontsize=14, fontweight='bold')
+    ax4.set_xlabel("Assets", fontsize=12)
+    ax4.set_ylabel("Returns", fontsize=12)
+    ax4.tick_params(axis='x', rotation=45)
+    plt.tight_layout()
+    st.pyplot(fig4)
 
 # ===============================
 # Footer
