@@ -133,23 +133,6 @@ Filtered and aligned with risk factors for analysis.
 
 ---
 
-## 📷 Dashboard Preview
-
-> Replace with real screenshots from your app
-
-### Overview
-
-![Overview](screenshots/overview.png)
-
-### Correlation Heatmap
-
-![Heatmap](screenshots/heatmap.png)
-
-### Cumulative Returns
-
-![Cumulative](screenshots/cumulative.png)
-
----
 
 ## ⚙️ Installation & Setup
 
