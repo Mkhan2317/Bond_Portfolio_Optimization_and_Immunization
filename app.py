@@ -89,7 +89,7 @@ filtered_Y = Y.loc[mask, selected_assets]
 # Overview
 # ===============================
 if section == "Overview":
-    st.title("🏦 Bond Portfolio Optimization & Immunization Dashboard")
+    st.title("📊 Bond Portfolio Optimization & Immunization - Project Outcome")
     st.markdown("---")
     
     # Header with key metrics
@@ -132,33 +132,33 @@ if section == "Overview":
     
     with col1:
         st.markdown("""
-        ## 📋 Dashboard Overview
+        ## 🎯 Project Overview
         
-        This professional-grade financial analytics platform provides comprehensive bond portfolio analysis 
-        and risk management capabilities. Built using advanced quantitative methods, it enables 
-        portfolio managers to make data-driven investment decisions through interactive visualizations 
-        and real-time risk assessment.
+        This interactive dashboard represents the **final outcome of my project on bond portfolio optimization and immunization**. 
+        It demonstrates how interest rate risk can be measured and managed using **duration and convexity analysis**, 
+        and showcases the practical application of financial engineering concepts through an interactive, 
+        professional-grade demonstration platform.
         
-        ### 🎯 Core Capabilities
-        - **Interest Rate Risk Analysis**: Duration and convexity-based risk quantification
-        - **Portfolio Performance Tracking**: Historical returns and volatility analysis
-        - **Correlation Analysis**: Asset relationship mapping and diversification insights
-        - **Risk-Return Optimization**: Visual risk-return profiling for asset selection
-        - **Data Export**: Filtered datasets for external analysis and reporting
+        ### 📋 Project Objectives
+        - **Analyze mixed portfolios** of bonds and equities using historical price and interest rate data
+        - **Quantify exposures** using key rate durations and convexity measurements
+        - **Create interactive visualizations** for returns, risk factors, and correlations
+        - **Establish framework** for immunization strategies to mitigate interest rate risk
+        - **Demonstrate practical application** of quantitative finance concepts
         
-        ### 🔧 Technical Features
-        - **Real-time Processing**: Dynamic data filtering and analysis
-        - **Interactive Visualizations**: Professional charts with comprehensive labeling
-        - **Multi-asset Support**: Bonds, equities, and mixed portfolio analysis
-        - **Export Functionality**: CSV downloads for further analysis
-        - **Responsive Design**: Optimized for desktop and mobile access
+        ### 🔑 Key Deliverables
+        - **Interactive Streamlit Dashboard**: Professional-grade portfolio analytics interface
+        - **Risk-Return Analysis**: Volatility, correlations, and scatter plot visualizations
+        - **Performance Tracking**: Cumulative returns analysis with time-series charts
+        - **Data Export Capabilities**: Filtered datasets for further analysis
+        - **Professional Documentation**: Comprehensive project documentation and code structure
         """)
     
     with col2:
         st.markdown("""
-        ## 📊 Quick Stats
+        ## 📊 Project Metrics
         
-        **Selected Assets**: {selected_count}
+        **Assets Analyzed**: {selected_count}
         
         **Date Range**: {start_date} to {end_date}
         
@@ -167,6 +167,8 @@ if section == "Overview":
         **Data Quality**: ✅ Complete
         
         **Risk Level**: {risk_level}
+        
+        **Project Status**: ✅ Complete
         """.format(
             selected_count=len(selected_assets),
             start_date=date_range[0].strftime('%Y-%m-%d'),
@@ -178,40 +180,40 @@ if section == "Overview":
     st.markdown("---")
     
     # Key insights section
-    st.markdown("## 🔍 Key Insights")
+    st.markdown("## 🔍 Project Insights")
     
     col1, col2, col3 = st.columns(3)
     
     with col1:
         st.markdown("""
         ### 📈 Performance Analysis
-        - **Cumulative Returns**: Track long-term portfolio growth
-        - **Volatility Patterns**: Identify risk concentration periods
-        - **Asset Performance**: Compare individual asset contributions
-        - **Risk-Adjusted Returns**: Sharpe ratio and other metrics
+        - **Cumulative Returns**: Tracked long-term portfolio growth patterns
+        - **Volatility Patterns**: Identified risk concentration periods
+        - **Asset Performance**: Compared individual asset contributions
+        - **Risk-Adjusted Returns**: Calculated Sharpe ratios and other metrics
         """)
     
     with col2:
         st.markdown("""
         ### 🔄 Correlation Insights
-        - **Asset Relationships**: Understand diversification benefits
-        - **Risk Concentration**: Identify highly correlated assets
-        - **Portfolio Balance**: Optimize asset allocation
-        - **Market Sensitivity**: Interest rate impact analysis
+        - **Asset Relationships**: Mapped diversification benefits
+        - **Risk Concentration**: Identified highly correlated assets
+        - **Portfolio Balance**: Analyzed optimal asset allocation
+        - **Market Sensitivity**: Measured interest rate impact
         """)
     
     with col3:
         st.markdown("""
         ### ⚠️ Risk Management
-        - **Duration Analysis**: Interest rate sensitivity measurement
-        - **Convexity Assessment**: Non-linear risk quantification
-        - **Stress Testing**: Scenario analysis capabilities
-        - **Immunization Ready**: Framework for risk mitigation
+        - **Duration Analysis**: Measured interest rate sensitivity
+        - **Convexity Assessment**: Quantified non-linear risk
+        - **Stress Testing**: Prepared scenario analysis framework
+        - **Immunization Ready**: Built foundation for risk mitigation
         """)
     
     st.markdown("---")
     
-    # Technical details
+    # Technical implementation
     st.markdown("## 🛠 Technical Implementation")
     
     col1, col2 = st.columns(2)
@@ -237,12 +239,37 @@ if section == "Overview":
     
     st.markdown("---")
     
+    # Future scope
+    st.markdown("## 🌱 Future Enhancements")
+    
+    col1, col2 = st.columns(2)
+    
+    with col1:
+        st.markdown("""
+        ### 🔮 Potential Extensions
+        - **Duration-matched portfolio optimization**
+        - **Scenario analysis under rate shocks**
+        - **Live bond market data integration**
+        - **Advanced immunization strategies**
+        """)
+    
+    with col2:
+        st.markdown("""
+        ### 🎯 Learning Outcomes
+        - **Quantitative finance application**
+        - **Interactive dashboard development**
+        - **Risk quantification methodologies**
+        - **Professional data visualization**
+        """)
+    
+    st.markdown("---")
+    
     # Footer with author info
     st.markdown("""
     <div style='text-align: center; padding: 20px; background-color: #f0f2f6; border-radius: 10px;'>
         <h4>📌 Project by MD Amir Khan</h4>
         <p><strong>MS Financial Engineering | Expected August 2025</strong></p>
-        <p>Building the future of quantitative finance through innovative analytics platforms</p>
+        <p>Demonstrating practical application of quantitative finance concepts through interactive analytics</p>
     </div>
     """, unsafe_allow_html=True)
 
